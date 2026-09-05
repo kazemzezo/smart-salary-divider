@@ -1,0 +1,28 @@
+{
+  "name": "مُقسِّم الراتب الذكي",
+  "short_name": "مقسّم الراتب",
+  "description": "حاسبة ذكية لتقسيم الراتب حسب قاعدة 50/30/20 أو نسب مخصصة، مع متابعة مواعيد نزول الرواتب في الدول العربية. تعمل بدون إنترنت وبياناتك محفوظة على جهازك فقط.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F2FAF6",
+  "theme_color": "#0F9D6B",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["finance", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='42' fill='%230F9D6B'/%3E%3Ctext x='96' y='132' font-size='110' text-anchor='middle' fill='white' font-family='Arial'%3E%D8%B1%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230F9D6B'/%3E%3Ctext x='256' y='352' font-size='295' text-anchor='middle' fill='white' font-family='Arial'%3E%D8%B1%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

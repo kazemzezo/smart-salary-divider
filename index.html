@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مُقسِّم الراتب الذكي | حاسبة تقسيم الراتب وقاعدة 50/30/20 ومواعيد الرواتب</title>
+<meta name="description" content="حاسبة تقسيم الراتب الذكية أونلاين: قسّم راتبك بقاعدة 50/30/20 أو بنسب مخصصة، نظّم مصروفاتك الشهرية، وتابع موعد نزول الراتب القادم في السعودية ومصر والإمارات وباقي الدول العربية. تعمل بدون إنترنت وبياناتك محفوظة على جهازك فقط.">
+<meta name="keywords" content="حاسبة الراتب, تقسيم الراتب, ادارة الميزانية, قاعدة 50 30 20, تنظيم المصروفات, مواعيد الرواتب, موعد نزول الراتب, ميزانية شهرية, ادخار, تخطيط مالي شخصي">
+<meta name="author" content="مُقسِّم الراتب الذكي">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="مُقسِّم الراتب الذكي — قسّم راتبك بذكاء وتابع موعد نزوله">
+<meta property="og:description" content="أداة مجانية لتقسيم الراتب حسب قاعدة 50/30/20 أو نسب مخصصة، مع متابعة مواعيد الرواتب في الدول العربية. لا تُجمع أي بيانات، كل شيء يُحفظ على جهازك.">
+<meta name="theme-color" content="#0F9D6B">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230F9D6B'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='white' font-family='Arial'%3E%D8%B1%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230F9D6B'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='white' font-family='Arial'%3E%D8%B1%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2FAF6;
+    --bg-soft:#E6F4EC;
+    --surface:#FFFFFF;
+    --surface-2:#EEF8F2;
+    --text:#0C2A21;
+    --text-muted:#5B7A6E;
+    --primary:#0E9D6B;
+    --primary-dark:#0A7C54;
+    --primary-soft:#DDF3E7;
+    --accent:#2E86AB;
+    --accent-soft:#DEF0F8;
+    --border:#D7ECE1;
+    --danger:#C7493F;
+    --shadow: 0 10px 30px -12px rgba(14,82,58,.18);
+    --radius-lg: 22px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+  }
+  [data-theme="dark"]{
+    --bg:#071613;
+    --bg-soft:#0B1F1A;
+    --surface:#0F2921;
+    --surface-2:#123227;
+    --text:#E7F5EE;
+    --text-muted:#8FB0A3;
+    --primary:#2BCB90;
+    --primary-dark:#1FA877;
+    --primary-soft:#123C2D;
+    --accent:#5FB2DE;
+    --accent-soft:#0F2E3B;
+    --border:#173A2F;
+    --danger:#E17A72;
+    --shadow: 0 10px 30px -12px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    line-height:1.7;
+    transition:background .25s ease, color .25s ease;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:40px;
+  }
+  h1,h2,h3,.brand-name{font-family:'Cairo', sans-serif;}
+  a{color:var(--accent);}
+  button{font-family:inherit;}
+  .wrap{max-width:720px; margin:0 auto; padding:0 18px;}
+
+  /* Header */
+  header.topbar{
+    position:sticky; top:0; z-index:40;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 18px; max-width:720px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:11px;
+    background:linear-gradient(155deg, var(--primary), var(--accent));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:800; font-size:18px; flex-shrink:0;
+  }
+  .brand-name{font-weight:800; font-size:17px;}
+  .brand-sub{font-size:11px; color:var(--text-muted); margin-top:-2px;}
+  .theme-btn{
+    width:42px; height:42px; border-radius:50%;
+    border:1px solid var(--border); background:var(--surface);
+    color:var(--text); font-size:19px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .theme-btn:active{transform:scale(.9);}
+
+  /* Hero */
+  .hero{padding:30px 0 6px;}
+  .hero h1{font-size:26px; font-weight:800; line-height:1.4;}
+  .hero p.lead{color:var(--text-muted); font-size:14.5px; margin-top:8px; max-width:52ch;}
+
+  /* Card base */
+  .panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:22px;
+    box-shadow:var(--shadow);
+    margin-top:18px;
+  }
+
+  /* Salary input */
+  .salary-field{margin-top:10px;}
+  .salary-field label{font-size:13px; color:var(--text-muted); font-weight:500;}
+  .salary-input-row{
+    display:flex; align-items:center; gap:10px; margin-top:10px;
+    background:var(--surface-2); border:1.5px solid var(--border);
+    border-radius:var(--radius-md); padding:8px 14px;
+    transition:border-color .2s ease;
+  }
+  .salary-input-row:focus-within{border-color:var(--primary);}
+  .salary-input-row input{
+    flex:1; border:none; background:transparent; outline:none;
+    font-size:26px; font-weight:700; color:var(--text);
+    font-family:'Cairo', sans-serif; min-width:0;
+  }
+  .salary-input-row input::placeholder{color:var(--text-muted); font-weight:600;}
+  .currency-tag{
+    font-size:13px; color:var(--primary-dark); background:var(--primary-soft);
+    padding:6px 10px; border-radius:20px; font-weight:600; flex-shrink:0;
+  }
+
+  /* Mode toggle */
+  .mode-toggle{
+    display:flex; gap:8px; margin-top:16px; background:var(--surface-2);
+    padding:5px; border-radius:14px; border:1px solid var(--border);
+  }
+  .mode-toggle button{
+    flex:1; border:none; background:transparent; padding:10px 8px;
+    border-radius:10px; font-size:13.5px; font-weight:600; color:var(--text-muted);
+    cursor:pointer; transition:all .2s ease;
+  }
+  .mode-toggle button.active{
+    background:var(--primary); color:#fff; box-shadow:0 4px 10px -4px rgba(14,157,107,.6);
+  }
+
+  /* Custom sliders */
+  .custom-ratios{display:none; margin-top:18px;}
+  .custom-ratios.show{display:block;}
+  .ratio-row{margin-bottom:16px;}
+  .ratio-row-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;}
+  .ratio-row-head .name{font-size:14px; font-weight:600;}
+  .ratio-row-head .val{font-size:14px; font-weight:700; color:var(--primary-dark);}
+  input[type="range"]{
+    -webkit-appearance:none; width:100%; height:6px; border-radius:6px;
+    background:var(--border); outline:none;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:20px; height:20px; border-radius:50%;
+    background:var(--primary); cursor:pointer; border:3px solid var(--surface);
+    box-shadow:0 2px 6px rgba(0,0,0,.25);
+  }
+  input[type="range"]::-moz-range-thumb{
+    width:20px; height:20px; border-radius:50%; background:var(--primary);
+    cursor:pointer; border:3px solid var(--surface);
+  }
+  .ratio-total{
+    text-align:center; font-size:13px; margin-top:6px; font-weight:600;
+    color:var(--text-muted);
+  }
+  .ratio-total.bad{color:var(--danger);}
+
+  /* Results */
+  .results{display:grid; gap:12px; margin-top:20px;}
+  .result-card{
+    display:flex; align-items:center; gap:14px;
+    background:var(--surface-2); border:1px solid var(--border);
+    border-radius:var(--radius-md); padding:16px;
+    border-inline-start:4px solid var(--c, var(--primary));
+  }
+  .result-icon{
+    width:42px; height:42px; border-radius:12px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:19px; background:color-mix(in srgb, var(--c, var(--primary)) 18%, transparent);
+  }
+  .result-info{flex:1; min-width:0;}
+  .result-title{font-size:14px; font-weight:700;}
+  .result-sub{font-size:12px; color:var(--text-muted); margin-top:1px;}
+  .result-amount{font-family:'Cairo',sans-serif; font-weight:800; font-size:18px; white-space:nowrap;}
+
+  /* Payday section */
+  .payday-head{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .payday-head .ico{
+    width:36px; height:36px; border-radius:10px; background:var(--accent-soft);
+    color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:17px;
+  }
+  select{
+    width:100%; padding:12px 14px; border-radius:var(--radius-md);
+    border:1.5px solid var(--border); background:var(--surface-2); color:var(--text);
+    font-family:inherit; font-size:14.5px; outline:none; cursor:pointer;
+  }
+  .countdown-box{
+    margin-top:16px; text-align:center; background:linear-gradient(155deg, var(--primary-soft), var(--accent-soft));
+    border-radius:var(--radius-md); padding:20px 14px; border:1px solid var(--border);
+  }
+  .countdown-days{font-family:'Cairo',sans-serif; font-size:44px; font-weight:800; color:var(--primary-dark); line-height:1;}
+  [data-theme="dark"] .countdown-days{color:var(--primary);}
+  .countdown-label{font-size:13px; color:var(--text-muted); margin-top:6px; font-weight:600;}
+  .countdown-grid{display:flex; gap:8px; justify-content:center; margin-top:14px;}
+  .countdown-unit{
+    background:var(--surface); border-radius:10px; padding:8px 10px; min-width:58px;
+    border:1px solid var(--border);
+  }
+  .countdown-unit b{display:block; font-family:'Cairo',sans-serif; font-size:17px;}
+  .countdown-unit span{font-size:10.5px; color:var(--text-muted);}
+  .payday-date-txt{text-align:center; font-size:12.5px; color:var(--text-muted); margin-top:12px;}
+
+  /* SEO content */
+  .seo-section{margin-top:34px;}
+  .seo-section h2{font-size:19px; margin-bottom:10px; margin-top:22px;}
+  .seo-section p, .seo-section li{font-size:14px; color:var(--text-muted);}
+  .seo-section ul{padding-inline-start:20px; margin-top:6px;}
+  .seo-section li{margin-bottom:6px;}
+  .faq-item{margin-top:14px; border-top:1px solid var(--border); padding-top:14px;}
+  .faq-item h3{font-size:15px; margin-bottom:4px;}
+
+  /* Footer */
+  footer{margin-top:36px; text-align:center; padding-top:18px; border-top:1px solid var(--border);}
+  .footer-links{display:flex; gap:18px; justify-content:center; margin-bottom:10px; flex-wrap:wrap;}
+  .footer-links button{
+    background:none; border:none; color:var(--accent); font-size:13px; cursor:pointer;
+    text-decoration:underline; padding:4px;
+  }
+  .footer-note{font-size:12px; color:var(--text-muted);}
+
+  /* Modal */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(4,20,15,.55); backdrop-filter:blur(2px);
+    display:none; align-items:flex-end; justify-content:center; z-index:100;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-box{
+    background:var(--surface); width:100%; max-width:640px; border-radius:20px 20px 0 0;
+    padding:24px; max-height:82vh; overflow-y:auto; animation:slideUp .25s ease;
+    border:1px solid var(--border); border-bottom:none;
+  }
+  @media (min-width:700px){
+    .modal-overlay{align-items:center;}
+    .modal-box{border-radius:20px; border-bottom:1px solid var(--border);}
+  }
+  @keyframes slideUp{from{transform:translateY(30px); opacity:0;} to{transform:translateY(0); opacity:1;}}
+  .modal-box h2{font-size:18px; margin-bottom:14px;}
+  .modal-box p{font-size:13.5px; color:var(--text-muted); margin-bottom:10px;}
+  .modal-close{
+    display:block; margin:18px auto 0; background:var(--primary); color:#fff;
+    border:none; padding:11px 26px; border-radius:12px; font-weight:600; cursor:pointer; font-size:14px;
+  }
+
+  /* toast */
+  .toast{
+    position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--text); color:var(--bg); padding:10px 18px; border-radius:30px;
+    font-size:13px; opacity:0; transition:all .3s ease; z-index:200; pointer-events:none;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">ر</div>
+      <div>
+        <div class="brand-name">مُقسِّم الراتب الذكي</div>
+        <div class="brand-sub">ميزانيتك ومواعيد راتبك في مكان واحد</div>
+      </div>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="تبديل الوضع الليلي" title="تبديل الوضع الليلي">🌙</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>قسّم راتبك في ثوانٍ، واعرف بالضبط متى ينزل القادم</h1>
+    <p class="lead">أدخل راتبك، اختر طريقة التقسيم، وشوف مصروفاتك وادخارك موزّعة ببطاقات واضحة. كل البيانات تُحفظ على جهازك فقط ولا تُرسل لأي خادم.</p>
+  </section>
+
+  <!-- Salary calculator panel -->
+  <section class="panel" aria-labelledby="calcTitle">
+    <div class="salary-field">
+      <label for="salaryInput">قيمة الراتب الشهري (صافي)</label>
+      <div class="salary-input-row">
+        <input type="number" id="salaryInput" inputmode="decimal" placeholder="مثال: 8000" min="0" step="1">
+        <span class="currency-tag" id="currencyTag">ر.س</span>
+      </div>
+    </div>
+
+    <div class="mode-toggle" role="tablist">
+      <button type="button" class="active" id="btn503020" role="tab">قاعدة 50/30/20</button>
+      <button type="button" id="btnCustom" role="tab">نسب مخصصة</button>
+    </div>
+
+    <div class="custom-ratios" id="customRatios">
+      <div class="ratio-row">
+        <div class="ratio-row-head"><span class="name">🏠 الأساسيات</span><span class="val" id="valNeeds">50%</span></div>
+        <input type="range" id="rangeNeeds" min="0" max="100" value="50">
+      </div>
+      <div class="ratio-row">
+        <div class="ratio-row-head"><span class="name">🎉 الترفيه والرغبات</span><span class="val" id="valWants">30%</span></div>
+        <input type="range" id="rangeWants" min="0" max="100" value="30">
+      </div>
+      <div class="ratio-row">
+        <div class="ratio-row-head"><span class="name">💰 الادخار والاستثمار</span><span class="val" id="valSavings">20%</span></div>
+        <input type="range" id="rangeSavings" min="0" max="100" value="20">
+      </div>
+      <div class="ratio-total" id="ratioTotal">المجموع: 100%</div>
+    </div>
+
+    <div class="results" id="resultsBox">
+      <div class="result-card" style="--c:#0E9D6B">
+        <div class="result-icon">🏠</div>
+        <div class="result-info">
+          <div class="result-title">الأساسيات</div>
+          <div class="result-sub" id="needsPct">إيجار، فواتير، طعام (50%)</div>
+        </div>
+        <div class="result-amount" id="needsAmount">0</div>
+      </div>
+      <div class="result-card" style="--c:#2E86AB">
+        <div class="result-icon">🎉</div>
+        <div class="result-info">
+          <div class="result-title">الترفيه والرغبات</div>
+          <div class="result-sub" id="wantsPct">خروجات، تسوق (30%)</div>
+        </div>
+        <div class="result-amount" id="wantsAmount">0</div>
+      </div>
+      <div class="result-card" style="--c:#B98A1D">
+        <div class="result-icon">💰</div>
+        <div class="result-info">
+          <div class="result-title">الادخار والاستثمار</div>
+          <div class="result-sub" id="savingsPct">مستقبلك المالي (20%)</div>
+        </div>
+        <div class="result-amount" id="savingsAmount">0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payday countdown panel -->
+  <section class="panel" aria-labelledby="paydayTitle">
+    <div class="payday-head">
+      <div class="ico">📅</div>
+      <div>
+        <h2 id="paydayTitle" style="font-size:15.5px;">موعد نزول الراتب القادم</h2>
+        <div style="font-size:12px; color:var(--text-muted);">اختر دولتك لمعرفة العد التنازلي</div>
+      </div>
+    </div>
+    <select id="countrySelect" aria-label="اختر الدولة"></select>
+
+    <div class="countdown-box">
+      <div class="countdown-days" id="countdownDays">--</div>
+      <div class="countdown-label">يوم متبقٍ لنزول الراتب</div>
+      <div class="countdown-grid">
+        <div class="countdown-unit"><b id="cdH">00</b><span>ساعة</span></div>
+        <div class="countdown-unit"><b id="cdM">00</b><span>دقيقة</span></div>
+        <div class="countdown-unit"><b id="cdS">00</b><span>ثانية</span></div>
+      </div>
+    </div>
+    <div class="payday-date-txt" id="paydayDateTxt"></div>
+    <div class="payday-date-txt">* المواعيد تقريبية وتمثل المتوسط الشائع، وقد تختلف حسب جهة العمل والقطاع (حكومي/خاص).</div>
+  </section>
+
+  <!-- SEO content -->
+  <section class="seo-section">
+    <h2>ما هي قاعدة 50/30/20 لتقسيم الراتب؟</h2>
+    <p>قاعدة 50/30/20 هي واحدة من أشهر طرق إدارة الميزانية الشخصية حول العالم، وتقوم على تقسيم الراتب الشهري الصافي إلى ثلاث فئات رئيسية: 50% للأساسيات مثل الإيجار والفواتير والطعام والمواصلات، 30% للرغبات والترفيه مثل الخروجات والاشتراكات والتسوق، و20% للادخار وسداد الديون والاستثمار طويل المدى. تساعد هذه القاعدة على تنظيم المصروفات دون الحاجة لجداول معقدة، وهي نقطة انطلاق ممتازة لأي شخص يريد البدء في التخطيط المالي الشخصي.</p>
+
+    <h2>كيف تستخدم حاسبة تقسيم الراتب؟</h2>
+    <ul>
+      <li>أدخل قيمة راتبك الشهري الصافي (بعد الخصومات) في الحقل أعلاه.</li>
+      <li>اختر "قاعدة 50/30/20" للتقسيم التلقائي، أو "نسب مخصصة" لتحديد نسبك الخاصة حسب وضعك المالي.</li>
+      <li>ستظهر لك النتائج فوراً في بطاقات توضح المبلغ المخصص لكل بند من بنود ميزانيتك.</li>
+      <li>استخدم قسم مواعيد الرواتب لمعرفة كم تبقى بالأيام والساعات على نزول راتبك القادم حسب دولتك.</li>
+    </ul>
+
+    <h2>مواعيد نزول الرواتب في الدول العربية</h2>
+    <p>تختلف مواعيد صرف الرواتب من دولة لأخرى ومن قطاع لآخر، وتوفر لك الأداة جدولاً تقريبياً بالمواعيد الشائعة للقطاعين الحكومي والخاص في كل من السعودية، الإمارات، مصر، الكويت، قطر، البحرين، عُمان، الأردن، العراق، المغرب، الجزائر، تونس وغيرها، مع عدّاد تنازلي حي يُحدَّث كل ثانية.</p>
+
+    <h2>هل التطبيق آمن على بياناتي المالية؟</h2>
+    <p>نعم. لا يقوم التطبيق بإرسال رقم راتبك أو أي بيانات مالية إلى أي خادم خارجي؛ فجميع الحسابات تتم داخل متصفحك مباشرة، وتُحفظ تفضيلاتك (آخر راتب، الدولة، النسب المخصصة، الوضع الليلي) في ذاكرة التخزين المحلي (Local Storage) الخاصة بجهازك فقط. يمكنك مراجعة التفاصيل كاملة في سياسة الخصوصية أسفل الصفحة.</p>
+
+    <div class="faq-item">
+      <h3>هل يعمل التطبيق بدون إنترنت؟</h3>
+      <p>نعم، بعد أول زيارة يعمل التطبيق كتطبيق ويب تقدمي (PWA) ويمكن استخدامه بدون اتصال بالإنترنت، كما يمكن تثبيته على الشاشة الرئيسية للهاتف مثل أي تطبيق عادي.</p>
+    </div>
+    <div class="faq-item">
+      <h3>هل يمكنني تعديل نسب التقسيم؟</h3>
+      <p>نعم، عبر خيار "نسب مخصصة" يمكنك تحريك الأشرطة لتحديد أي نسبة تريدها لكل بند، بما يتناسب مع وضعك المالي الشخصي.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <button type="button" id="openPrivacy">سياسة الخصوصية</button>
+      <button type="button" id="openTerms">شروط الاستخدام</button>
+    </div>
+    <div class="footer-note">© <span id="yearNow"></span> مُقسِّم الراتب الذكي — جميع الحسابات تتم محلياً على جهازك.</div>
+  </footer>
+
+</main>
+
+<!-- Privacy Modal -->
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal-box">
+    <h2>سياسة الخصوصية</h2>
+    <p>يحترم "مُقسِّم الراتب الذكي" خصوصيتك بالكامل، ونلتزم بالشفافية التامة حول طريقة تعاملنا مع بياناتك:</p>
+    <p><strong>1. لا نجمع بياناتك المالية:</strong> لا يقوم التطبيق بجمع أو تخزين أو إرسال قيمة راتبك أو أي بيانات مالية أخرى إلى أي خادم خارجي أو طرف ثالث. جميع العمليات الحسابية تتم بالكامل داخل متصفحك (على جهازك).</p>
+    <p><strong>2. التخزين المحلي (Local Storage):</strong> نستخدم خاصية التخزين المحلي في متصفحك لحفظ تفضيلاتك فقط (آخر راتب أدخلته، الدولة المختارة، النسب المخصصة، وحالة الوضع الليلي) حتى لا تضطر لإدخالها في كل مرة. هذه البيانات تبقى على جهازك ولا يمكننا نحن الوصول إليها، ويمكنك حذفها في أي وقت من إعدادات المتصفح.</p>
+    <p><strong>3. ملفات تعريف الارتباط (Cookies):</strong> قد يستخدم هذا الموقع ملفات تعريف ارتباط قياسية لأغراض تحسين تجربة الاستخدام أو لأغراض إعلانية من شركات خارجية (مثل Google AdSense)، والتي قد تستخدم معلومات غير شخصية لعرض إعلانات مناسبة. يمكنك التحكم في هذه الملفات من إعدادات متصفحك.</p>
+    <p><strong>4. أمان تام:</strong> نظراً لأن التطبيق لا يتصل بأي خادم لمعالجة بياناتك، فإن معلوماتك المالية لا تغادر جهازك إطلاقاً، ما يجعل استخدامه آمناً بنسبة 100%.</p>
+    <p><strong>5. تحديثات السياسة:</strong> قد يتم تحديث هذه السياسة من وقت لآخر، وننصح بمراجعتها دورياً.</p>
+    <button class="modal-close" data-close>فهمت، إغلاق</button>
+  </div>
+</div>
+
+<!-- Terms Modal -->
+<div class="modal-overlay" id="termsModal">
+  <div class="modal-box">
+    <h2>شروط الاستخدام</h2>
+    <p><strong>1. طبيعة الخدمة:</strong> "مُقسِّم الراتب الذكي" أداة مجانية لأغراض التوعية والتخطيط المالي الشخصي فقط، وليست استشارة مالية أو محاسبية أو قانونية احترافية.</p>
+    <p><strong>2. دقة المعلومات:</strong> نبذل جهدنا لجعل مواعيد صرف الرواتب في الدول العربية دقيقة قدر الإمكان، إلا أنها تمثل متوسطات شائعة وقد تختلف فعلياً حسب جهة العمل أو القطاع أو الظروف الاستثنائية، ولا نتحمل أي مسؤولية عن أي قرار مالي يُبنى فقط على هذه المواعيد.</p>
+    <p><strong>3. مسؤولية المستخدم:</strong> القرارات المالية التي تتخذها بناءً على نتائج الحاسبة هي مسؤوليتك الشخصية بالكامل، ونوصي دائماً بمراجعة مستشار مالي مختص في القرارات الكبيرة.</p>
+    <p><strong>4. حقوق الاستخدام:</strong> يُسمح باستخدام هذا التطبيق للأغراض الشخصية غير التجارية.</p>
+    <p><strong>5. التعديلات:</strong> نحتفظ بالحق في تعديل هذه الشروط أو ميزات التطبيق في أي وقت دون إشعار مسبق.</p>
+    <button class="modal-close" data-close>فهمت، إغلاق</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ Theme ============ */
+const themeBtn = document.getElementById('themeBtn');
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  themeBtn.textContent = t === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('sq_theme', t);
+}
+applyTheme(localStorage.getItem('sq_theme') || 'light');
+themeBtn.addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(cur);
+});
+
+/* ============ Toast ============ */
+let toastTimer;
+function showToast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> el.classList.remove('show'), 2200);
+}
+
+/* ============ Countries data ============ */
+/* day: يوم صرف الراتب التقريبي الشائع من كل شهر ميلادي (1-28 لتفادي مشاكل الأشهر القصيرة) */
+const COUNTRIES = [
+  { code:'SA', name:'🇸🇦 السعودية', day:27, currency:'ر.س' },
+  { code:'AE', name:'🇦🇪 الإمارات', day:25, currency:'د.إ' },
+  { code:'EG', name:'🇪🇬 مصر', day:24, currency:'ج.م' },
+  { code:'KW', name:'🇰🇼 الكويت', day:1,  currency:'د.ك' },
+  { code:'QA', name:'🇶🇦 قطر', day:1,  currency:'ر.ق' },
+  { code:'BH', name:'🇧🇭 البحرين', day:25, currency:'د.ب' },
+  { code:'OM', name:'🇴🇲 عُمان', day:25, currency:'ر.ع' },
+  { code:'JO', name:'🇯🇴 الأردن', day:24, currency:'د.أ' },
+  { code:'IQ', name:'🇮🇶 العراق', day:1,  currency:'د.ع' },
+  { code:'LB', name:'🇱🇧 لبنان', day:1,  currency:'ل.ل' },
+  { code:'MA', name:'🇲🇦 المغرب', day:28, currency:'د.م' },
+  { code:'DZ', name:'🇩🇿 الجزائر', day:27, currency:'د.ج' },
+  { code:'TN', name:'🇹🇳 تونس', day:28, currency:'د.ت' },
+  { code:'LY', name:'🇱🇾 ليبيا', day:1,  currency:'د.ل' },
+  { code:'SD', name:'🇸🇩 السودان', day:1,  currency:'ج.س' },
+  { code:'PS', name:'🇵🇸 فلسطين', day:1,  currency:'₪' },
+  { code:'YE', name:'🇾🇪 اليمن', day:1,  currency:'ر.ي' },
+  { code:'SY', name:'🇸🇾 سوريا', day:1,  currency:'ل.س' },
+];
+
+const countrySelect = document.getElementById('countrySelect');
+COUNTRIES.forEach(c=>{
+  const opt = document.createElement('option');
+  opt.value = c.code;
+  opt.textContent = c.name;
+  countrySelect.appendChild(opt);
+});
+
+function getCountry(code){ return COUNTRIES.find(c=>c.code===code) || COUNTRIES[0]; }
+
+function nextPayday(day){
+  const now = new Date();
+  let target = new Date(now.getFullYear(), now.getMonth(), day, 0,0,0);
+  if(target.getTime() <= now.getTime()){
+    target = new Date(now.getFullYear(), now.getMonth()+1, day, 0,0,0);
+  }
+  return target;
+}
+
+let countdownTimer;
+function startCountdown(){
+  const country = getCountry(countrySelect.value);
+  document.getElementById('currencyTag').textContent = country.currency;
+  clearInterval(countdownTimer);
+  function tick(){
+    const target = nextPayday(country.day);
+    const now = new Date();
+    let diff = Math.max(0, target - now);
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000)/3600000);
+    const mins = Math.floor((diff % 3600000)/60000);
+    const secs = Math.floor((diff % 60000)/1000);
+    document.getElementById('countdownDays').textContent = days;
+    document.getElementById('cdH').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cdM').textContent = String(mins).padStart(2,'0');
+    document.getElementById('cdS').textContent = String(secs).padStart(2,'0');
+    const fmt = target.toLocaleDateString('ar-EG-u-nu-latn', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+    document.getElementById('paydayDateTxt').textContent = 'الموعد المتوقع: ' + fmt;
+  }
+  tick();
+  countdownTimer = setInterval(tick, 1000);
+}
+
+countrySelect.addEventListener('change', ()=>{
+  localStorage.setItem('sq_country', countrySelect.value);
+  startCountdown();
+});
+countrySelect.value = localStorage.getItem('sq_country') || 'SA';
+startCountdown();
+
+/* ============ Salary split ============ */
+const salaryInput = document.getElementById('salaryInput');
+const btn503020 = document.getElementById('btn503020');
+const btnCustom = document.getElementById('btnCustom');
+const customRatios = document.getElementById('customRatios');
+const rangeNeeds = document.getElementById('rangeNeeds');
+const rangeWants = document.getElementById('rangeWants');
+const rangeSavings = document.getElementById('rangeSavings');
+
+let mode = localStorage.getItem('sq_mode') || 'preset';
+let ratios = JSON.parse(localStorage.getItem('sq_ratios') || '{"needs":50,"wants":30,"savings":20}');
+
+function fmtMoney(n){
+  if(isNaN(n)) n = 0;
+  return n.toLocaleString('en-US', {maximumFractionDigits:0});
+}
+
+function setMode(m){
+  mode = m;
+  localStorage.setItem('sq_mode', m);
+  btn503020.classList.toggle('active', m==='preset');
+  btnCustom.classList.toggle('active', m==='custom');
+  customRatios.classList.toggle('show', m==='custom');
+  render();
+}
+btn503020.addEventListener('click', ()=> setMode('preset'));
+btnCustom.addEventListener('click', ()=> setMode('custom'));
+
+function updateRatioUI(){
+  rangeNeeds.value = ratios.needs;
+  rangeWants.value = ratios.wants;
+  rangeSavings.value = ratios.savings;
+  document.getElementById('valNeeds').textContent = ratios.needs + '%';
+  document.getElementById('valWants').textContent = ratios.wants + '%';
+  document.getElementById('valSavings').textContent = ratios.savings + '%';
+  const total = ratios.needs + ratios.wants + ratios.savings;
+  const totalEl = document.getElementById('ratioTotal');
+  totalEl.textContent = 'المجموع: ' + total + '%';
+  totalEl.classList.toggle('bad', total !== 100);
+}
+
+[['needs',rangeNeeds],['wants',rangeWants],['savings',rangeSavings]].forEach(([key, el])=>{
+  el.addEventListener('input', ()=>{
+    ratios[key] = parseInt(el.value, 10);
+    localStorage.setItem('sq_ratios', JSON.stringify(ratios));
+    updateRatioUI();
+    render();
+  });
+});
+
+function render(){
+  const salary = parseFloat(salaryInput.value) || 0;
+  let r = mode === 'preset' ? {needs:50, wants:30, savings:20} : ratios;
+  const needsAmt = salary * r.needs/100;
+  const wantsAmt = salary * r.wants/100;
+  const savingsAmt = salary * r.savings/100;
+
+  document.getElementById('needsAmount').textContent = fmtMoney(needsAmt);
+  document.getElementById('wantsAmount').textContent = fmtMoney(wantsAmt);
+  document.getElementById('savingsAmount').textContent = fmtMoney(savingsAmt);
+  document.getElementById('needsPct').textContent = `إيجار، فواتير، طعام (${r.needs}%)`;
+  document.getElementById('wantsPct').textContent = `خروجات، تسوق (${r.wants}%)`;
+  document.getElementById('savingsPct').textContent = `مستقبلك المالي (${r.savings}%)`;
+}
+
+salaryInput.addEventListener('input', ()=>{
+  localStorage.setItem('sq_salary', salaryInput.value);
+  render();
+});
+
+/* init from storage */
+salaryInput.value = localStorage.getItem('sq_salary') || '';
+updateRatioUI();
+setMode(mode);
+
+/* ============ Modals ============ */
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(el){ el.classList.remove('open'); }
+document.getElementById('openPrivacy').addEventListener('click', ()=> openModal('privacyModal'));
+document.getElementById('openTerms').addEventListener('click', ()=> openModal('termsModal'));
+document.querySelectorAll('.modal-overlay').forEach(ov=>{
+  ov.addEventListener('click', (e)=>{ if(e.target === ov) closeModal(ov); });
+});
+document.querySelectorAll('[data-close]').forEach(btn=>{
+  btn.addEventListener('click', (e)=> closeModal(e.target.closest('.modal-overlay')));
+});
+
+document.getElementById('yearNow').textContent = new Date().getFullYear();
+
+/* ============ Service worker ============ */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
