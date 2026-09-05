@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kazemzezo.github.io/smart-salary-divider/sitemap.xml
