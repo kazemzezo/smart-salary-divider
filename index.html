@@ -90,6 +90,7 @@
   }
   .brand-name{font-weight:800; font-size:17px;}
   .brand-sub{font-size:11px; color:var(--text-muted); margin-top:-2px;}
+  .header-actions{display:flex; gap:8px;}
   .theme-btn{
     width:42px; height:42px; border-radius:50%;
     border:1px solid var(--border); background:var(--surface);
@@ -285,10 +286,11 @@
         <div class="brand-sub">ميزانيتك ومواعيد راتبك في مكان واحد</div>
       </div>
     </div>
-<div style="display:flex; gap:8px;">
-  <button class="theme-btn" id="shareBtn" aria-label="مشاركة التطبيق" title="مشاركة التطبيق">📤</button>
-  <button class="theme-btn" id="themeBtn" aria-label="تبديل الوضع الليلي" title="تبديل الوضع الليلي">🌙</button>
-</div>  </div>
+    <div class="header-actions">
+      <button class="theme-btn" id="shareBtn" aria-label="مشاركة التطبيق" title="مشاركة التطبيق">📤</button>
+      <button class="theme-btn" id="themeBtn" aria-label="تبديل الوضع الليلي" title="تبديل الوضع الليلي">🌙</button>
+    </div>
+  </div>
 </header>
 
 <main class="wrap">
@@ -472,6 +474,26 @@ function showToast(msg){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=> el.classList.remove('show'), 2200);
 }
+
+/* ============ Share ============ */
+document.getElementById('shareBtn').addEventListener('click', async ()=>{
+  const shareData = {
+    title: 'مُقسِّم الراتب الذكي',
+    text: 'قسّم راتبك بذكاء وتابع موعد نزوله القادم 💰',
+    url: window.location.href
+  };
+  if(navigator.share){
+    try{ await navigator.share(shareData); }
+    catch(e){ /* المستخدم لغى المشاركة، ولا داعي لأي رسالة */ }
+  } else {
+    try{
+      await navigator.clipboard.writeText(shareData.url);
+      showToast('تم نسخ الرابط ✅');
+    }catch(e){
+      showToast('انسخ الرابط من شريط العنوان أعلاه');
+    }
+  }
+});
 
 /* ============ Countries data ============ */
 /* day: يوم صرف الراتب التقريبي الشائع من كل شهر ميلادي (1-28 لتفادي مشاكل الأشهر القصيرة) */
